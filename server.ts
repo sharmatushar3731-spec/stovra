@@ -2,6 +2,7 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import express from 'express';
 import fs from 'fs';
+import http from 'http';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import { initializeDatabase, UPLOADS_DIR } from './server/db/database.ts';
@@ -51,9 +52,15 @@ async function startServer() {
     res.status(404).json({ error: 'API endpoint not found.' });
   });
 
+  const httpServer = http.createServer(app);
+
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        allowedHosts: true,
+        ws: { server: httpServer },
+      },
       appType: 'spa',
     });
     app.use(vite.middlewares);
@@ -71,7 +78,7 @@ async function startServer() {
   }
 
   const PORT = Number(process.env.PORT) || 3000;
-  app.listen(PORT, '0.0.0.0', () => {
+  httpServer.listen(PORT, '0.0.0.0', () => {
     console.log(`STOVRA full-stack server running on http://0.0.0.0:${PORT}`);
   });
 }
