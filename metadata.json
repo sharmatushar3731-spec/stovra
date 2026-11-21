@@ -1,0 +1,6 @@
+{
+  "name": "STOVRA — Smart Storage & Inventory",
+  "description": "Smart storage booking, QR-tracked inventory management, and verified payments platform. Your Space. Your Control.",
+  "requestFramePermissions": ["camera", "geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
