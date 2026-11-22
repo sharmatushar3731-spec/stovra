@@ -34,12 +34,11 @@ jobs:
       - name: Build React
         run: npm run build
 
-      - name: Verify Capacitor Config
+      - name: Find Capacitor Config
         run: |
           pwd
+          find . -maxdepth 4 -type f -iname 'capacitor.config.*' -print
           ls -la
-          cat capacitor.config.json
-          npx cap --version
 
       - name: Create Android
         run: npx cap add android
