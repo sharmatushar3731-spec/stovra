@@ -52,5 +52,8 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
+        name: stovra-apk
+        path: android/app/build/outputs/apk/debug/app-debug.
           name: STOVRA-APK
           path: android/app/build/outputs/apk/debug/app-debug.ap
+ st
