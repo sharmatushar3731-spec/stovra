@@ -34,6 +34,13 @@ jobs:
       - name: Build React
         run: npm run build
 
+      - name: Verify Capacitor Config
+        run: |
+          pwd
+          ls -la
+          cat capacitor.config.json
+          npx cap --version
+
       - name: Create Android
         run: npx cap add android
 
