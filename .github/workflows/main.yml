@@ -45,7 +45,10 @@ jobs:
           npx cap config
 
       - name: Create Android
-        run: npx cap add android
+        run: |
+          rm -f capacitor.config.json
+          npx cap init STOVRA com.stovra.app --web-dir dist
+          npx cap add android
 
       - name: Sync Android
         run: npx cap sync android
